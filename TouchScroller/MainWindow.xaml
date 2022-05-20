@@ -10,7 +10,8 @@
         <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Height="38" Margin="16,54,0,0" VerticalAlignment="Top" Width="86" Click="btnLeft_Click"/>
         <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="37" Margin="124,55,0,0" VerticalAlignment="Top" Width="86" Click="btnRight_Click"/>
         <ScrollBar HorizontalAlignment="Left" Height="211" Margin="315,136,0,0" VerticalAlignment="Top" Width="37"/>
-        <Rectangle HorizontalAlignment="Left" Height="211" Margin="429,136,0,0" Stroke="Black" VerticalAlignment="Top" Width="54"/>
+        <Rectangle HorizontalAlignment="Left" Height="211" Margin="16,154,0,0" Stroke="Black" VerticalAlignment="Top" Width="54"/>
+        <Button x:Name="btnMid" Content="Button" HorizontalAlignment="Left" Height="37" Margin="16,104,0,0" VerticalAlignment="Top" Width="194" Click="btnMid_Click"/>
 
     </Grid>
 </Window>

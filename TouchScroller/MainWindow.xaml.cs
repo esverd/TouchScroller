@@ -40,13 +40,20 @@ namespace TouchScroller
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
-            
+            moveToLastClick();
+            mouseSim.Mouse.LeftButtonClick();
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
         {
             moveToLastClick();
-            //press right button
+            mouseSim.Mouse.RightButtonClick();
+        }
+
+        private void btnMid_Click(object sender, RoutedEventArgs e)
+        {
+            moveToLastClick();
+            mouseSim.Mouse.MiddleButtonClick();
         }
 
         public void Subscribe()

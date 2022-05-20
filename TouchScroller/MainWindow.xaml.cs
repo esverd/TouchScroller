@@ -31,7 +31,10 @@ namespace TouchScroller
 
         private void btnUp_Click(object sender, RoutedEventArgs e)
         {
-            simulator.Mouse.MoveMouseTo(30000, 30000);
+            
+            simulator.Mouse.MoveMouseTo(45000, 30000);
+            //simulator.Mouse.RightButtonClick();
+            simulator.Mouse.VerticalScroll(-10);
         }
     }
 }

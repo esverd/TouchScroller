@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "JR0Kcw89uKnbN1GAdRcGU44nLrxguWUMcZS21OPtbGFaQhN3xNMmk+PCZvkNwPvTx07dt4pigt4SMNqKMciJnQ==",
+  "success": true,
+  "projectFilePath": "C:\\D\\CREATIVE WIP\\Cs, TouchScroller\\TouchScroller\\TouchScroller\\TouchScroller.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\eirik\\.nuget\\packages\\inputsimulatorplus\\1.0.7\\inputsimulatorplus.1.0.7.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'InputSimulatorPlus 1.0.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "InputSimulatorPlus",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
+}

@@ -41,7 +41,7 @@ namespace TouchScroller
             //simulator.Mouse.MoveMouseTo(45000, 30000);
             //simulator.Mouse.RightButtonClick();
             //simulator.Mouse.VerticalScroll(-10);
-            //Debug.WriteLine("Test!");
+            Debug.WriteLine("Test!");
             //MessageBox.Show("hello");
         }
 
@@ -62,7 +62,8 @@ namespace TouchScroller
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
         {
-            MessageBox.Show(e.Button.ToString() + " " + e.X + " " + e.Y);
+            //MessageBox.Show(e.Button.ToString() + " " + e.X + " " + e.Y);
+            Debug.WriteLine(e.Button.ToString() + " " + e.X + " " + e.Y);
             
             //Debug.WriteLine("MouseDown: \t{0}; \t System Timestamp: \t{1}", e.Button, e.Timestamp);
 

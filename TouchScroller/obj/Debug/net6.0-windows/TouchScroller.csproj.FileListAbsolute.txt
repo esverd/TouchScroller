@@ -21,3 +21,4 @@ C:\D\CREATIVE WIP\Cs, TouchScroller\TouchScroller\TouchScroller\obj\Debug\net6.0
 C:\D\CREATIVE WIP\Cs, TouchScroller\TouchScroller\TouchScroller\obj\Debug\net6.0-windows\ref\TouchScroller.dll
 C:\D\CREATIVE WIP\Cs, TouchScroller\TouchScroller\TouchScroller\bin\Debug\net6.0-windows\WindowsInput.dll
 C:\D\CREATIVE WIP\Cs, TouchScroller\TouchScroller\TouchScroller\obj\Debug\net6.0-windows\TouchScroller.csproj.CopyComplete
+C:\D\CREATIVE WIP\Cs, TouchScroller\TouchScroller\TouchScroller\bin\Debug\net6.0-windows\WindowsHook.dll

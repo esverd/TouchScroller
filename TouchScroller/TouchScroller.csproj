@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="InputSimulatorPlus" Version="1.0.7" />
+    <PackageReference Include="WindowsHook" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

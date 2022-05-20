@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "JR0Kcw89uKnbN1GAdRcGU44nLrxguWUMcZS21OPtbGFaQhN3xNMmk+PCZvkNwPvTx07dt4pigt4SMNqKMciJnQ==",
+  "dgSpecHash": "FEfVy+rtI17RBNJmf3yqIv97KuiNT3/oboTPtiJ5Ct74uKnqVFjsmZOehpCEtwy7YriUgUU9sLIzYoU88SVvEQ==",
   "success": true,
   "projectFilePath": "C:\\D\\CREATIVE WIP\\Cs, TouchScroller\\TouchScroller\\TouchScroller\\TouchScroller.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\eirik\\.nuget\\packages\\inputsimulatorplus\\1.0.7\\inputsimulatorplus.1.0.7.nupkg.sha512"
+    "C:\\Users\\eirik\\.nuget\\packages\\inputsimulatorplus\\1.0.7\\inputsimulatorplus.1.0.7.nupkg.sha512",
+    "C:\\Users\\eirik\\.nuget\\packages\\windowshook\\1.0.1\\windowshook.1.0.1.nupkg.sha512"
   ],
   "logs": [
     {

@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnUp" Content="Button" HorizontalAlignment="Left" Height="37" Margin="59,119,0,0" VerticalAlignment="Top" Width="87" Click="btnUp_Click"/>
-        <Button x:Name="btnDown" Content="Button" HorizontalAlignment="Left" Height="37" Margin="59,194,0,0" VerticalAlignment="Top" Width="87"/>
+        <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Height="38" Margin="16,54,0,0" VerticalAlignment="Top" Width="86" Click="btnLeft_Click"/>
+        <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="37" Margin="124,55,0,0" VerticalAlignment="Top" Width="86" Click="btnRight_Click"/>
+        <ScrollBar HorizontalAlignment="Left" Height="211" Margin="315,136,0,0" VerticalAlignment="Top" Width="37"/>
+        <Rectangle HorizontalAlignment="Left" Height="211" Margin="429,136,0,0" Stroke="Black" VerticalAlignment="Top" Width="54"/>
 
     </Grid>
 </Window>

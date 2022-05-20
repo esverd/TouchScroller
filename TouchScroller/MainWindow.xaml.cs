@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using WindowsInput.Native;
-//using WindowsInput;
+using WindowsInput.Native;
+using WindowsInput;
 
 namespace TouchScroller
 {
@@ -22,7 +22,7 @@ namespace TouchScroller
     /// </summary>
     public partial class MainWindow : Window
     {
-        //InputSimulator simulator = new InputSimulator();
+        InputSimulator simulator = new InputSimulator();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace TouchScroller
 
         private void btnUp_Click(object sender, RoutedEventArgs e)
         {
-            //simulator.Mouse.MoveMouseTo(30000, 30000);
+            simulator.Mouse.MoveMouseTo(30000, 30000);
         }
     }
 }

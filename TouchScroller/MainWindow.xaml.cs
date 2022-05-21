@@ -44,7 +44,7 @@ namespace TouchScroller
             Subscribe();        //subscribe to start mouse logging
             mousePos = new Point(500, 500);
             mousePosPrev = new Point();
-            scrollFactor = 5;
+            scrollFactor = 6;
             btnActiveColor = new SolidColorBrush(Color.FromRgb(90, 90, 90));
             btnInactiveColor = new SolidColorBrush(Color.FromRgb(221, 221, 221));
             shiftToggled = false;
@@ -136,7 +136,7 @@ namespace TouchScroller
         }
         private void gridSplittScroller_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            //moveToLastClick();      //return to last click
+            moveToLastClick();      //return to last click
         }
 
         private void scrollHandler(double verticalChange)
@@ -192,8 +192,11 @@ namespace TouchScroller
 
         private void btnAlt_Click(object sender, RoutedEventArgs e)
         {
-            moveToLastClick();
+            btnLeft_Click(sender, e);
+            //mouseSim.Mouse.Sleep(100);
+            //mouseSim.Keyboard.Sleep(100);
             mouseSim.Keyboard.KeyPress(VirtualKeyCode.MENU);
+            //TODO press button at last location and last active window
         }
     }
 }

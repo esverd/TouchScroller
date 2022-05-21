@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:TouchScroller"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Height="38" Margin="16,16,0,0" VerticalAlignment="Top" Width="49" Click="btnLeft_Click"/>
         <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="37" Margin="78,17,0,0" VerticalAlignment="Top" Width="49" Click="btnRight_Click"/>
         <Button x:Name="btnMid" Content="Button" HorizontalAlignment="Left" Height="37" Margin="16,66,0,0" VerticalAlignment="Top" Width="111" Click="btnMid_Click"/>
         <GridSplitter x:Name="gridSplittScroller" HorizontalAlignment="Left" Height="211" Margin="19,118,0,0" VerticalAlignment="Top" Width="53" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
+        <Button x:Name="btnShift" Content="Button" HorizontalAlignment="Left" Height="37" Margin="19,341,0,0" VerticalAlignment="Top" Width="111" Click="btnShift_Click"/>
 
     </Grid>
 </Window>

@@ -16,6 +16,7 @@ using WindowsInput.Native;
 using WindowsInput;
 using System.Diagnostics;
 using WindowsHook;
+using System.Runtime.InteropServices;
 
 namespace TouchScroller
 {
@@ -24,16 +25,16 @@ namespace TouchScroller
     /// </summary>
     public partial class MainWindow : Window
     {
-        private InputSimulator mouseSim;
-        private IKeyboardMouseEvents m_GlobalHook;
-        private Point mousePos;
-        private Point mousePosPrev;
+        private InputSimulator mouseSim;            //used to simulate mouse event
+        private IKeyboardMouseEvents m_GlobalHook;      //used for logging last mouse click
+        private Point mousePos;         //stores position of latest mouse click
+        private Point mousePosPrev;     //stores position of previous mouse click, to return to
 
         public MainWindow()
         {
             InitializeComponent();
             mouseSim = new InputSimulator();
-            Subscribe();
+            Subscribe();        //subscribe to start mouse logging
             mousePos = new Point(500, 500);
             mousePosPrev = new Point();
         }
@@ -79,8 +80,6 @@ namespace TouchScroller
             //double width = SystemParameters.PrimaryScreenWidth;
             //Debug.WriteLine(height + " " + width);
 
-            
-
             double absX = (mousePosPrev.X / screenResolution.X) * 65535;      //65535 because MoveMouseTo requires absolute coordinates
             double absY = (mousePosPrev.Y / screenResolution.Y) * 65535;
             mouseSim.Mouse.MoveMouseTo(absX, absY);
@@ -101,8 +100,6 @@ namespace TouchScroller
             Debug.WriteLine(String.Format("Btn: {0}. Current: ({1}, {2}). Prev: ({3}, {4})", 
                 e.Button.ToString(), mousePos.X, mousePos.Y, mousePosPrev.X, mousePosPrev.Y));
 
-            
-
             //mouseSim.Mouse.MoveMouseTo()
         }
 
@@ -113,6 +110,23 @@ namespace TouchScroller
             m_GlobalHook.Dispose();
         }
 
+        private Point scrollPoint = new Point(0, 0);
+        double scrollCounter;
+        private void gridSplittScroller_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            Debug.WriteLine("test1");
+            scrollPoint.X = mousePos.X;
+            scrollPoint.Y = mousePos.Y;
+            scrollCounter = 0;
+            //start mouse logging
+            //m_GlobalHook.MouseMove += GlobalHookMouseMove;
+        }
+
+        //private void GlobalHookMouseMove(object sender, MouseEventExtArgs e)
+        //{
+
+        //}
+
         private void gridSplittScroller_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
             Debug.WriteLine("test3 " + e.VerticalChange);
@@ -122,23 +136,12 @@ namespace TouchScroller
             //scroll up or down at location of last click //scroll with keyboard?
             //return to previous position in gridsplitter
 
-            moveToLastClick();
+            //moveToLastClick();
             scrollHandler(e.VerticalChange);
 
             //return to gridsplitter
-            mouseSim.Mouse.MoveMouseTo(scrollPoint.X / screenResolution.X * 65535, scrollPoint.Y / screenResolution.Y * 65535);
+            //mouseSim.Mouse.MoveMouseTo(scrollPoint.X / screenResolution.X * 65535, scrollPoint.Y / screenResolution.Y * 65535);
         }
-
-        private Point scrollPoint = new Point(0, 0);
-        double scrollCounter;
-        private void gridSplittScroller_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
-        {
-            Debug.WriteLine("test1");
-            scrollPoint.X = mousePos.X;
-            scrollPoint.Y = mousePos.Y;
-            scrollCounter = 0;
-        }
-
         private void gridSplittScroller_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             Debug.WriteLine("test2");
@@ -155,12 +158,36 @@ namespace TouchScroller
 
             if (scrollCounter % scrollFactor == 0)
             {
-                mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
+                //deactivate scrolling in gridsplitter while this happens?
+                //store curent mouse position: P1
+                //move to mouse action position
+                //scroll up or down
+                //move back to P1
+
+                Debug.WriteLine("Relative position " + Mouse.GetPosition(gridSplittScroller).X);
+                
+                
+                //mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
             }
             scrollCounter++;
 
 
             
         }
+
+        private void btnShift_Click(object sender, RoutedEventArgs e)
+        {
+            //Debug.WriteLine("Relative position " + Mouse.GetPosition(Application.).X);
+            //PointToScreen(Mouse.GetPosition(gridSplittScroller));
+            //Point GetMousePos() => PointToScreen(Mouse.GetPosition(gridSplittScroller));
+            Point p1 = Mouse.GetPosition(mainGrid);
+            Point p2 = PointToScreen(p1);
+            Debug.WriteLine("p1 = " + p1 + "    p2 = " + p2);
+
+            SetCursorPos((int)p2.X, (int)p2.Y);
+        }
+
+        [DllImport("User32.dll")]
+        private static extern bool SetCursorPos(int X, int Y);
     }
 }

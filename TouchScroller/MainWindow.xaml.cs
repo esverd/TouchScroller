@@ -35,7 +35,7 @@ namespace TouchScroller
         private int scrollFactor;       //used to set trigger threshold for scrolling 1 line
         private SolidColorBrush btnActiveColor;
         private SolidColorBrush btnInactiveColor;
-        private bool shiftToggled, ctrlToggled, altToggled;
+        private bool shiftToggled, ctrlToggled;
 
         public MainWindow()
         {
@@ -49,7 +49,6 @@ namespace TouchScroller
             btnInactiveColor = new SolidColorBrush(Color.FromRgb(221, 221, 221));
             shiftToggled = false;
             ctrlToggled = false;
-            altToggled = false;
     }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
@@ -174,6 +173,27 @@ namespace TouchScroller
                 mouseSim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
             }
             shiftToggled = !shiftToggled;
+        }
+
+        private void btnCtrl_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ctrlToggled)
+            {
+                btnCtrl.Background = btnActiveColor;
+                mouseSim.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+            }
+            else
+            {
+                btnCtrl.Background = btnInactiveColor;
+                mouseSim.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+            }
+            ctrlToggled = !ctrlToggled;
+        }
+
+        private void btnAlt_Click(object sender, RoutedEventArgs e)
+        {
+            moveToLastClick();
+            mouseSim.Keyboard.KeyPress(VirtualKeyCode.MENU);
         }
     }
 }

@@ -164,7 +164,12 @@ namespace TouchScroller
                 //scroll up or down
                 //move back to P1
 
-                Debug.WriteLine("Relative position " + Mouse.GetPosition(gridSplittScroller).X);
+                Point p1 = PointToScreen(Mouse.GetPosition(mainGrid));
+                moveToLastClick();
+                mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
+                SetCursorPos((int)p1.X, (int)p1.Y);
+
+                //Debug.WriteLine("Relative position " + Mouse.GetPosition(gridSplittScroller).X);
                 
                 
                 //mouseSim.Mouse.VerticalScroll(scrollDirection * 1);

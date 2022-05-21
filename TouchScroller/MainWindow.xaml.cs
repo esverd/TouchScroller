@@ -110,6 +110,21 @@ namespace TouchScroller
             m_GlobalHook.Dispose();
         }
 
-        
+
+        private void gridSplittScroller_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            Debug.WriteLine("test1");
+        }
+
+        private void gridSplittScroller_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            Debug.WriteLine("test2");
+        }
+
+        private void gridSplittScroller_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            Debug.WriteLine("test3 " + e.VerticalChange);
+            
+        }
     }
 }

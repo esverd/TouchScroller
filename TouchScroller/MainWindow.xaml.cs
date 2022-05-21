@@ -63,6 +63,8 @@ namespace TouchScroller
             m_GlobalHook.MouseDownExt += GlobalHookMouseDownExt;
         }
 
+        //TODO make this adjustable or adaptable
+        Point screenResolution = new Point(1920, 1200);     //resolution in px. width, height
         private void moveToLastClick()
         {
             //simulator.Mouse.MoveMouseTo(45000, 30000);
@@ -77,8 +79,7 @@ namespace TouchScroller
             //double width = SystemParameters.PrimaryScreenWidth;
             //Debug.WriteLine(height + " " + width);
 
-            //TODO make this adjustable or adaptable
-            Point screenResolution = new Point(1920, 1200);     //resolution in px. width, height
+            
 
             double absX = (mousePosPrev.X / screenResolution.X) * 65535;      //65535 because MoveMouseTo requires absolute coordinates
             double absY = (mousePosPrev.Y / screenResolution.Y) * 65535;
@@ -86,6 +87,8 @@ namespace TouchScroller
 
             mousePos.X = mousePosPrev.X;    //keeps coordinates for previous mouse click
             mousePos.Y = mousePosPrev.Y;    //so multiple button presses wont change mouse position
+
+            //mouseSim.Mouse.MoveMouseToPositionOnVirtualDesktop TODO test this function
         }
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
@@ -113,16 +116,51 @@ namespace TouchScroller
         private void gridSplittScroller_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
             Debug.WriteLine("test3 " + e.VerticalChange);
+
+            //get mouse position in gridsplitter
+            //move to last click
+            //scroll up or down at location of last click //scroll with keyboard?
+            //return to previous position in gridsplitter
+
+            moveToLastClick();
+            scrollHandler(e.VerticalChange);
+
+            //return to gridsplitter
+            //mouseSim.Mouse.MoveMouseTo(scrollPoint.X / screenResolution.X * 65535, scrollPoint.Y / screenResolution.Y * 65535);
         }
 
+        private Point scrollPoint = new Point(0, 0);
+        double scrollCounter;
         private void gridSplittScroller_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
             Debug.WriteLine("test1");
+            scrollPoint.X = mousePos.X;
+            scrollPoint.Y = mousePos.Y;
+            scrollCounter = 0;
         }
 
         private void gridSplittScroller_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             Debug.WriteLine("test2");
+            //return to last click
+            //moveToLastClick();
+        }
+
+        private void scrollHandler(double verticalChange)
+        {
+            double scrollFactor = 5;
+
+            int scrollDirection = (int)(verticalChange / Math.Abs(verticalChange));
+            Debug.WriteLine("Direction " + scrollDirection);
+
+            if (scrollCounter % scrollFactor == 0)
+            {
+                mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
+            }
+            scrollCounter++;
+
+
+            
         }
     }
 }

@@ -126,7 +126,7 @@ namespace TouchScroller
             scrollHandler(e.VerticalChange);
 
             //return to gridsplitter
-            //mouseSim.Mouse.MoveMouseTo(scrollPoint.X / screenResolution.X * 65535, scrollPoint.Y / screenResolution.Y * 65535);
+            mouseSim.Mouse.MoveMouseTo(scrollPoint.X / screenResolution.X * 65535, scrollPoint.Y / screenResolution.Y * 65535);
         }
 
         private Point scrollPoint = new Point(0, 0);

@@ -7,13 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Height="38" Margin="16,54,0,0" VerticalAlignment="Top" Width="86" Click="btnLeft_Click"/>
-        <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="37" Margin="124,55,0,0" VerticalAlignment="Top" Width="86" Click="btnRight_Click"/>
-        <ScrollBar HorizontalAlignment="Left" Height="211" Margin="315,136,0,0" VerticalAlignment="Top" Width="37"/>
-        <Rectangle x:Name="rectScrollbar" HorizontalAlignment="Left" Height="211" Margin="16,154,0,0" Stroke="Black" VerticalAlignment="Top" Width="54"/>
-        <Button x:Name="btnMid" Content="Button" HorizontalAlignment="Left" Height="37" Margin="16,104,0,0" VerticalAlignment="Top" Width="194" Click="btnMid_Click"/>
-        <GridSplitter x:Name="gridSplittScroller" HorizontalAlignment="Left" Height="211" Margin="167,154,0,0" VerticalAlignment="Top" Width="43" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="385,122,0,0" VerticalAlignment="Top" Width="53"/>
+        <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Height="38" Margin="16,16,0,0" VerticalAlignment="Top" Width="49" Click="btnLeft_Click"/>
+        <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="37" Margin="78,17,0,0" VerticalAlignment="Top" Width="49" Click="btnRight_Click"/>
+        <Button x:Name="btnMid" Content="Button" HorizontalAlignment="Left" Height="37" Margin="16,66,0,0" VerticalAlignment="Top" Width="111" Click="btnMid_Click"/>
+        <GridSplitter x:Name="gridSplittScroller" HorizontalAlignment="Left" Height="211" Margin="19,118,0,0" VerticalAlignment="Top" Width="53" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
 
     </Grid>
 </Window>

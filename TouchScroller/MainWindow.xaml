@@ -11,7 +11,7 @@
         <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="37" Margin="78,17,0,0" VerticalAlignment="Top" Width="49" Click="btnRight_Click"/>
         <Button x:Name="btnMid" Content="Button" HorizontalAlignment="Left" Height="37" Margin="16,66,0,0" VerticalAlignment="Top" Width="111" Click="btnMid_Click"/>
         <GridSplitter x:Name="gridSplittScroller" HorizontalAlignment="Left" Height="211" Margin="19,118,0,0" VerticalAlignment="Top" Width="53" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
-        <Button x:Name="btnShift" Content="Button" HorizontalAlignment="Left" Height="37" Margin="19,341,0,0" VerticalAlignment="Top" Width="111" Click="btnShift_Click"/>
+        <Button x:Name="btnShift" Content="Shift" HorizontalAlignment="Left" Height="37" Margin="19,341,0,0" VerticalAlignment="Top" Width="111" Click="btnShift_Click" ClickMode="Release"/>
 
     </Grid>
 </Window>

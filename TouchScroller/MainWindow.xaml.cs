@@ -25,10 +25,17 @@ namespace TouchScroller
     /// </summary>
     public partial class MainWindow : Window
     {
+        [DllImport("User32.dll")]
+        private static extern bool SetCursorPos(int X, int Y);
         private InputSimulator mouseSim;            //used to simulate mouse event
         private IKeyboardMouseEvents m_GlobalHook;      //used for logging last mouse click
         private Point mousePos;         //stores position of latest mouse click
         private Point mousePosPrev;     //stores position of previous mouse click, to return to
+        private int scrollCounter;      //counts number of times scroll loop has iterated
+        private int scrollFactor;       //used to set trigger threshold for scrolling 1 line
+        private SolidColorBrush btnActiveColor;
+        private SolidColorBrush btnInactiveColor;
+        private bool shiftToggled, ctrlToggled, altToggled;
 
         public MainWindow()
         {
@@ -37,7 +44,13 @@ namespace TouchScroller
             Subscribe();        //subscribe to start mouse logging
             mousePos = new Point(500, 500);
             mousePosPrev = new Point();
-        }
+            scrollFactor = 5;
+            btnActiveColor = new SolidColorBrush(Color.FromRgb(90, 90, 90));
+            btnInactiveColor = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            shiftToggled = false;
+            ctrlToggled = false;
+            altToggled = false;
+    }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -84,10 +97,13 @@ namespace TouchScroller
             double absY = (mousePosPrev.Y / screenResolution.Y) * 65535;
             mouseSim.Mouse.MoveMouseTo(absX, absY);
 
+            //mouseSim.Mouse.MoveMouseToPositionOnVirtualDesktop TODO test this function
+
+            //mousePosPrev = PointToScreen(mousePosPrev);
+            //SetCursorPos((int)mousePosPrev.X, (int)mousePosPrev.Y);
+
             mousePos.X = mousePosPrev.X;    //keeps coordinates for previous mouse click
             mousePos.Y = mousePosPrev.Y;    //so multiple button presses wont change mouse position
-
-            //mouseSim.Mouse.MoveMouseToPositionOnVirtualDesktop TODO test this function
         }
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
@@ -110,51 +126,24 @@ namespace TouchScroller
             m_GlobalHook.Dispose();
         }
 
-        private Point scrollPoint = new Point(0, 0);
-        double scrollCounter;
         private void gridSplittScroller_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
-            Debug.WriteLine("test1");
-            scrollPoint.X = mousePos.X;
-            scrollPoint.Y = mousePos.Y;
             scrollCounter = 0;
-            //start mouse logging
-            //m_GlobalHook.MouseMove += GlobalHookMouseMove;
         }
-
-        //private void GlobalHookMouseMove(object sender, MouseEventExtArgs e)
-        //{
-
-        //}
 
         private void gridSplittScroller_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
-            Debug.WriteLine("test3 " + e.VerticalChange);
-
-            //get mouse position in gridsplitter
-            //move to last click
-            //scroll up or down at location of last click //scroll with keyboard?
-            //return to previous position in gridsplitter
-
-            //moveToLastClick();
             scrollHandler(e.VerticalChange);
-
-            //return to gridsplitter
-            //mouseSim.Mouse.MoveMouseTo(scrollPoint.X / screenResolution.X * 65535, scrollPoint.Y / screenResolution.Y * 65535);
         }
         private void gridSplittScroller_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-            Debug.WriteLine("test2");
-            //return to last click
-            //moveToLastClick();
+            //moveToLastClick();      //return to last click
         }
 
         private void scrollHandler(double verticalChange)
         {
-            double scrollFactor = 5;
-
             int scrollDirection = (int)(verticalChange / Math.Abs(verticalChange));
-            Debug.WriteLine("Direction " + scrollDirection);
+            //Debug.WriteLine("Direction " + scrollDirection);
 
             if (scrollCounter % scrollFactor == 0)
             {
@@ -168,31 +157,23 @@ namespace TouchScroller
                 moveToLastClick();
                 mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
                 SetCursorPos((int)p1.X, (int)p1.Y);
-
-                //Debug.WriteLine("Relative position " + Mouse.GetPosition(gridSplittScroller).X);
-                
-                
-                //mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
             }
             scrollCounter++;
-
-
-            
         }
 
         private void btnShift_Click(object sender, RoutedEventArgs e)
         {
-            //Debug.WriteLine("Relative position " + Mouse.GetPosition(Application.).X);
-            //PointToScreen(Mouse.GetPosition(gridSplittScroller));
-            //Point GetMousePos() => PointToScreen(Mouse.GetPosition(gridSplittScroller));
-            Point p1 = Mouse.GetPosition(mainGrid);
-            Point p2 = PointToScreen(p1);
-            Debug.WriteLine("p1 = " + p1 + "    p2 = " + p2);
-
-            SetCursorPos((int)p2.X, (int)p2.Y);
+            if(!shiftToggled)
+            {
+                btnShift.Background = btnActiveColor;
+                mouseSim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+            }
+            else
+            {
+                btnShift.Background = btnInactiveColor;
+                mouseSim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+            }
+            shiftToggled = !shiftToggled;
         }
-
-        [DllImport("User32.dll")]
-        private static extern bool SetCursorPos(int X, int Y);
     }
 }

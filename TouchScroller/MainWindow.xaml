@@ -5,15 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouchScroller"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="150" MinHeight="450" MinWidth="150" ResizeMode="CanResize">
     <Grid x:Name="mainGrid">
-        <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Height="23" Margin="16,16,0,0" VerticalAlignment="Top" Width="49" Click="btnLeft_Click"/>
-        <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Height="22" Margin="78,17,0,0" VerticalAlignment="Top" Width="49" Click="btnRight_Click"/>
-        <Button x:Name="btnMid" Content="Button" HorizontalAlignment="Left" Height="23" Margin="16,46,0,0" VerticalAlignment="Top" Width="111" Click="btnMid_Click"/>
-        <GridSplitter x:Name="gridSplittScroller" HorizontalAlignment="Left" Height="211" Margin="19,78,0,0" VerticalAlignment="Top" Width="53" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
-        <Button x:Name="btnShift" Content="Shift" HorizontalAlignment="Left" Height="23" Margin="19,299,0,0" VerticalAlignment="Top" Width="111" Click="btnShift_Click" ClickMode="Release"/>
-        <Button x:Name="btnCtrl" Content="Ctrl" HorizontalAlignment="Left" Height="23" Margin="19,327,0,0" VerticalAlignment="Top" Width="111" Click="btnCtrl_Click" ClickMode="Release"/>
-        <Button x:Name="btnAlt" Content="Alt" HorizontalAlignment="Left" Height="23" Margin="19,355,0,0" VerticalAlignment="Top" Width="111" ClickMode="Release" Click="btnAlt_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="20"></RowDefinition>
+            <RowDefinition MinHeight="20"></RowDefinition>
+            <RowDefinition MinHeight="200"></RowDefinition>
+            <RowDefinition MinHeight="20"></RowDefinition>
+            <RowDefinition MinHeight="20"></RowDefinition>
+            <RowDefinition MinHeight="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Button x:Name="btnLeft" Grid.Row="0" Grid.Column="0" Content="Button" HorizontalAlignment="Stretch" Height="23" VerticalAlignment="Stretch" Width="49" Click="btnLeft_Click"/>
+        <Button x:Name="btnRight" Grid.Row="0" Grid.Column="1" Content="Button" HorizontalAlignment="Stretch" Height="23" Width="49" Click="btnRight_Click"/>
+        <Button x:Name="btnMid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Stretch" Height="23" VerticalAlignment="Stretch" Width="111" Click="btnMid_Click"/>
+        <GridSplitter x:Name="gridSplittScroller" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Height="211" VerticalAlignment="Stretch" Width="53" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
+        <Button x:Name="btnShift" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Shift" HorizontalAlignment="Stretch" Height="23" VerticalAlignment="Stretch" Width="111" Click="btnShift_Click" ClickMode="Release"/>
+        <Button x:Name="btnCtrl" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Ctrl" HorizontalAlignment="Stretch" Height="23" VerticalAlignment="Stretch" Width="111" Click="btnCtrl_Click" ClickMode="Release"/>
+        <Button x:Name="btnAlt" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Alt" HorizontalAlignment="Stretch" Height="23" VerticalAlignment="Stretch" Width="111" ClickMode="Release" Click="btnAlt_Click"/>
 
     </Grid>
 </Window>

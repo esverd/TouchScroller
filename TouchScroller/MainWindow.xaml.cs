@@ -49,6 +49,7 @@ namespace TouchScroller
             btnInactiveColor = new SolidColorBrush(Color.FromRgb(221, 221, 221));
             shiftToggled = false;
             ctrlToggled = false;
+            
     }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)

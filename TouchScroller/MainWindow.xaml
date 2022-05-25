@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouchScroller"
-        mc:Ignorable="d" MinHeight="340" MinWidth="60" Height="450" Width="80" ResizeMode="CanResize" Topmost="True" WindowStyle="None" AllowsTransparency="True">
+        mc:Ignorable="d" MinHeight="340" MinWidth="60" Height="450" Width="80" ResizeMode="CanResize" Topmost="True" WindowStyle="ToolWindow">
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="20" Height="1*"></RowDefinition>

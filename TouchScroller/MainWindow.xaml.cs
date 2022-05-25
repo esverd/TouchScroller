@@ -53,7 +53,6 @@ namespace TouchScroller
             ctrlToggled = false;
             stopwatchScrollStop = new Stopwatch();
             scrollStopTimeThreshold = 500;
-            changeOpacity(0.85);
     }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)

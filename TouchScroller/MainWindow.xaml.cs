@@ -120,15 +120,14 @@ namespace TouchScroller
 
         private bool checkStopwatch()
         {
-            bool returnVal = false;
-            if (stopwatchScrollStop.ElapsedMilliseconds > scrollStopTimeThreshold)
-                returnVal = true;
+            if (stopwatchScrollStop.ElapsedMilliseconds > scrollStopTimeThreshold || !stopwatchScrollStop.IsRunning)
+                return true;
             else        //ignore the latest touch on button
             {
                 mousePos.X = mousePosPrev.X;
                 mousePos.Y = mousePosPrev.Y;
+                return false;
             }
-            return returnVal;
         }
 
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
@@ -223,17 +222,14 @@ namespace TouchScroller
                 ctrlToggled = !ctrlToggled;
             }
         }
-
-        private void btnAlt_Click(object sender, RoutedEventArgs e)
+        private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             if (checkStopwatch())
             {
                 btnLeft_Click(sender, e);
-                //mouseSim.Mouse.Sleep(100);
-                //mouseSim.Keyboard.Sleep(100);
-                mouseSim.Keyboard.KeyPress(VirtualKeyCode.MENU);
-                //TODO press button at last location and last active window
+                mouseSim.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_Z);
             }
         }
+
     }
 }

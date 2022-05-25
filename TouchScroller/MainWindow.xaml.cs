@@ -36,6 +36,8 @@ namespace TouchScroller
         private SolidColorBrush btnActiveColor;
         private SolidColorBrush btnInactiveColor;
         private bool shiftToggled, ctrlToggled;
+        private Stopwatch stopwatchScrollStop;
+        private long scrollStopTimeThreshold;
 
         public MainWindow()
         {
@@ -49,25 +51,35 @@ namespace TouchScroller
             btnInactiveColor = new SolidColorBrush(Color.FromRgb(221, 221, 221));
             shiftToggled = false;
             ctrlToggled = false;
-            
+            stopwatchScrollStop = new Stopwatch();
+            scrollStopTimeThreshold = 500;
     }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
         {
-            moveToLastClick();
-            mouseSim.Mouse.LeftButtonClick();
+            if (checkStopwatch())
+            {
+                moveToLastClick();
+                mouseSim.Mouse.LeftButtonClick();
+            }
         }
 
         private void btnRight_Click(object sender, RoutedEventArgs e)
         {
-            moveToLastClick();
-            mouseSim.Mouse.RightButtonClick();
+            if (checkStopwatch())
+            {
+                moveToLastClick();
+                mouseSim.Mouse.RightButtonClick();
+            }
         }
 
         private void btnMid_Click(object sender, RoutedEventArgs e)
         {
-            moveToLastClick();
-            mouseSim.Mouse.MiddleButtonClick();
+            if (checkStopwatch())
+            {
+                moveToLastClick();
+                mouseSim.Mouse.MiddleButtonClick();
+            }
         }
 
         public void Subscribe()
@@ -106,6 +118,19 @@ namespace TouchScroller
             mousePos.Y = mousePosPrev.Y;    //so multiple button presses wont change mouse position
         }
 
+        private bool checkStopwatch()
+        {
+            bool returnVal = false;
+            if (stopwatchScrollStop.ElapsedMilliseconds > scrollStopTimeThreshold)
+                returnVal = true;
+            else        //ignore the latest touch on button
+            {
+                mousePos.X = mousePosPrev.X;
+                mousePos.Y = mousePosPrev.Y;
+            }
+            return returnVal;
+        }
+
         private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
         {
             //Debug.WriteLine(e.Button.ToString() + " " + e.X + " " + e.Y);
@@ -129,6 +154,7 @@ namespace TouchScroller
         private void gridSplittScroller_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
             scrollCounter = 0;
+            stopwatchScrollStop.Reset();
         }
 
         private void gridSplittScroller_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
@@ -138,6 +164,7 @@ namespace TouchScroller
         private void gridSplittScroller_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             moveToLastClick();      //return to last click
+            stopwatchScrollStop.Start();
         }
 
         private void scrollHandler(double verticalChange)
@@ -163,41 +190,50 @@ namespace TouchScroller
 
         private void btnShift_Click(object sender, RoutedEventArgs e)
         {
-            if(!shiftToggled)
+            if (checkStopwatch())
             {
-                btnShift.Background = btnActiveColor;
-                mouseSim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                if (!shiftToggled)
+                {
+                    btnShift.Background = btnActiveColor;
+                    mouseSim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                }
+                else
+                {
+                    btnShift.Background = btnInactiveColor;
+                    mouseSim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                }
+                shiftToggled = !shiftToggled;
             }
-            else
-            {
-                btnShift.Background = btnInactiveColor;
-                mouseSim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
-            }
-            shiftToggled = !shiftToggled;
         }
 
         private void btnCtrl_Click(object sender, RoutedEventArgs e)
         {
-            if (!ctrlToggled)
+            if (checkStopwatch())
             {
-                btnCtrl.Background = btnActiveColor;
-                mouseSim.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+                if (!ctrlToggled)
+                {
+                    btnCtrl.Background = btnActiveColor;
+                    mouseSim.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+                }
+                else
+                {
+                    btnCtrl.Background = btnInactiveColor;
+                    mouseSim.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+                }
+                ctrlToggled = !ctrlToggled;
             }
-            else
-            {
-                btnCtrl.Background = btnInactiveColor;
-                mouseSim.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
-            }
-            ctrlToggled = !ctrlToggled;
         }
 
         private void btnAlt_Click(object sender, RoutedEventArgs e)
         {
-            btnLeft_Click(sender, e);
-            //mouseSim.Mouse.Sleep(100);
-            //mouseSim.Keyboard.Sleep(100);
-            mouseSim.Keyboard.KeyPress(VirtualKeyCode.MENU);
-            //TODO press button at last location and last active window
+            if (checkStopwatch())
+            {
+                btnLeft_Click(sender, e);
+                //mouseSim.Mouse.Sleep(100);
+                //mouseSim.Keyboard.Sleep(100);
+                mouseSim.Keyboard.KeyPress(VirtualKeyCode.MENU);
+                //TODO press button at last location and last active window
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace TouchScroller
             Subscribe();        //subscribe to start mouse logging
             mousePos = new Point(500, 500);
             mousePosPrev = new Point();
-            scrollFactor = 6;
+            scrollFactor = 5;
             btnActiveColor = new SolidColorBrush(Color.FromRgb(90, 90, 90));
             btnInactiveColor = new SolidColorBrush(Color.FromRgb(221, 221, 221));
             shiftToggled = false;
@@ -181,7 +181,7 @@ namespace TouchScroller
 
                 Point p1 = PointToScreen(Mouse.GetPosition(mainGrid));
                 moveToLastClick();
-                mouseSim.Mouse.VerticalScroll(scrollDirection * 1);
+                mouseSim.Mouse.VerticalScroll(scrollDirection * -1);
                 SetCursorPos((int)p1.X, (int)p1.Y);
             }
             scrollCounter++;

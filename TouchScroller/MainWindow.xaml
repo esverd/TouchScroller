@@ -23,9 +23,9 @@
         <Button x:Name="btnRight" Grid.Row="0" Grid.Column="1" Margin="2,2,2,2" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnRight_Click"/>
         <Button x:Name="btnMid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="2,2,2,2" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnMid_Click"/>
         <GridSplitter x:Name="gridSplittScroller" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,2,5,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DragStarted="gridSplittScroller_DragStarted" DragDelta="gridSplittScroller_DragDelta" DragCompleted="gridSplittScroller_DragCompleted" Cursor="ScrollNS"/>
-        <Button x:Name="btnShift" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Shift" Margin="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnShift_Click" ClickMode="Release" FontSize="10"/>
-        <Button x:Name="btnCtrl" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Ctrl" Margin="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnCtrl_Click" ClickMode="Release" FontSize="10"/>
-        <Button x:Name="btnUndo" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Undo" Margin="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClickMode="Release" Click="btnUndo_Click" FontSize="10"/>
+        <Button x:Name="btnUndo" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Undo" Margin="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClickMode="Release" Click="btnUndo_Click" FontSize="10"/>
+        <Button x:Name="btnShift" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Shift" Margin="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnShift_Click" ClickMode="Release" FontSize="10"/>
+        <Button x:Name="btnCtrl" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="Ctrl" Margin="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="btnCtrl_Click" ClickMode="Release" FontSize="10"/>
 
     </Grid>
 </Window>

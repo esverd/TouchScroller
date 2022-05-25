@@ -53,6 +53,7 @@ namespace TouchScroller
             ctrlToggled = false;
             stopwatchScrollStop = new Stopwatch();
             scrollStopTimeThreshold = 500;
+            changeOpacity(0.85);
     }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
@@ -229,6 +230,13 @@ namespace TouchScroller
                 btnLeft_Click(sender, e);
                 mouseSim.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_Z);
             }
+        }
+
+        private void changeOpacity(double opacity)
+        {
+            //for opacity to work for mainWindow: windowStyle must be None, and allowTransparancy must be true
+            btnLeft.Opacity = opacity;
+            namedMainWindow.Opacity = opacity;
         }
 
     }
